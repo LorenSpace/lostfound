@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".RegisterActivity">
+    tools:context=".fragment.RegisterFragment">
 
     <TextView
         android:id="@+id/title_text_view"
@@ -22,14 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/item_name"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:minHeight="48dp"
         android:prompt="@string/category_prompt" />
 
     <EditText
@@ -38,8 +42,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/item_description"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/owner_edit_text"
@@ -47,8 +54,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/master_name"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/contact_edit_text"
@@ -56,8 +66,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/master_phone"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:importantForAutofill="no" />
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/location_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/item_location"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Button
         android:id="@+id/register_button"

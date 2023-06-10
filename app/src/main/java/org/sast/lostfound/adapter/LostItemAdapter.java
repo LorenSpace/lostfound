@@ -1,6 +1,10 @@
 package org.sast.lostfound.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.sast.lostfound.InfoActivity;
 import org.sast.lostfound.R;
 import org.sast.lostfound.model.LostItem;
 
+import java.io.File;
 import java.util.List;
 
 public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder> {
@@ -36,16 +42,22 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
     public void onBindViewHolder(@NonNull LostItemViewHolder holder, int position) {
         LostItem item = itemList.get(position);
         holder.titleTextView.setText(item.getTitle());
-        holder.timeTextView.setText(item.getTime());
+        holder.timeTextView.setText(DateFormat.format("yyyy-MM-dd HH:mm:ss", item.getTime()));
         holder.locationTextView.setText(item.getLocation());
         holder.categoryTextView.setText(item.getCategory());
         holder.statusTextView.setText(item.getStatus());
-
-        if (item.getPhoto() != null) {
-            holder.photoImageView.setImageBitmap(item.getPhoto());
+        File photoFile = new File(item.getPhotoPath());
+        if (photoFile.exists()) {
+            Bitmap photoBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+            holder.photoImageView.setImageBitmap(photoBitmap);
         } else {
             holder.photoImageView.setImageResource(R.drawable.placeholder);
         }
+        holder.timeTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, InfoActivity.class);
+            intent.putExtra("lost_item", item);
+            context.startActivity(intent);
+        });
     }
 
     @Override

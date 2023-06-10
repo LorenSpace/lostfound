@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/main_function">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_home"
+                    android:icon="@drawable/ic_home"
+                    android:title="@string/menu_home" />
+                <item
+                    android:id="@+id/menu_register"
+                    android:icon="@drawable/ic_register"
+                    android:title="@string/menu_sign_up" />
+                <item
+                    android:id="@+id/menu_list"
+                    android:icon="@drawable/ic_list"
+                    android:title="@string/menu_list" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

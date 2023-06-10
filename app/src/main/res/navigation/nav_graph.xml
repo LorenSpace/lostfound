@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="org.sast.lostfound.fragment.HomeFragment"
+        android:label="主屏幕" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="org.sast.lostfound.fragment.RegisterFragment"
+        android:label="失物登记" />
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="org.sast.lostfound.fragment.ListFragment"
+        android:label="失物列表" />
+
+</navigation>

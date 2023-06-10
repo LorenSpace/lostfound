@@ -4,6 +4,9 @@
     <string name="time">月份：</string>
     <string name="status">状态：</string>
     <string name="todo">TODO</string>
+    <string name="first_username">B20032025</string>
+    <string name="initial_avatar">initial_avatar</string>
+    <string name="initial_description">there is nothing here</string>
     <string name="category_prompt">请选择失物类别</string>
     <string name="item_description">请输入失物描述</string>
     <string name="master_name">请输入失主姓名</string>
@@ -11,4 +14,22 @@
     <string name="sign_up">登记</string>
     <string name="item_name">请输入失物名称</string>
     <string name="item_register">失物登记</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+    <string name="menu_home">主屏幕</string>
+    <string name="menu_sign_up">失物登记</string>
+    <string name="menu_list">统计列表</string>
+    <string name="item_location">请输入失物发现地址</string>
+    <string name="main_function">主功能</string>
+    <string name="claim_button_text">认领</string>
+    <string name="status_unclaimed">未认领</string>
+    <string name="claim_dialog_title">物品认领</string>
+    <string name="claim_dialog_message">你确定要认领该物品吗？</string>
+    <string name="claim_dialog_positive_button">是的</string>
+    <string name="claim_dialog_negative_button">不是</string>
+    <string name="status_claimed">已认领</string>
+    <string name="claim_time_prefix">认领时间：</string>
+    <string name="claim_success_message">物品已经成功认领</string>
 </resources>
