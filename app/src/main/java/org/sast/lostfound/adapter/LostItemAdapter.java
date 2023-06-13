@@ -22,7 +22,7 @@ import java.io.File;
 import java.util.List;
 
 public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder> {
-    private Context context;
+    private final Context context;
     private List<LostItem> itemList;
 
     public LostItemAdapter(Context context, List<LostItem> itemList) {
@@ -46,13 +46,6 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
         holder.locationTextView.setText(item.getLocation());
         holder.categoryTextView.setText(item.getCategory());
         holder.statusTextView.setText(item.getStatus());
-        File photoFile = new File(item.getPhotoPath());
-        if (photoFile.exists()) {
-            Bitmap photoBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-            holder.photoImageView.setImageBitmap(photoBitmap);
-        } else {
-            holder.photoImageView.setImageResource(R.drawable.placeholder);
-        }
         holder.timeTextView.setOnClickListener(v -> {
             Intent intent = new Intent(context, InfoActivity.class);
             intent.putExtra("lost_item", item);
@@ -67,7 +60,7 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
 
     public void filterList(List<LostItem> filteredList) {
         itemList = filteredList;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     public static class LostItemViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +69,6 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
         public TextView locationTextView;
         public TextView categoryTextView;
         public TextView statusTextView;
-        public ImageView photoImageView;
 
         public LostItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,7 +77,6 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
             locationTextView = itemView.findViewById(R.id.location_text_view);
             categoryTextView = itemView.findViewById(R.id.category_text_view);
             statusTextView = itemView.findViewById(R.id.status_text_view);
-            photoImageView = itemView.findViewById(R.id.photo_image_view);
         }
     }
 }

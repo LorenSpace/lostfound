@@ -32,4 +32,6 @@
     <string name="status_claimed">已认领</string>
     <string name="claim_time_prefix">认领时间：</string>
     <string name="claim_success_message">物品已经成功认领</string>
+    <string name="take_picture">使用相机拍照</string>
+    <string name="update_picture">本地上传照片</string>
 </resources>

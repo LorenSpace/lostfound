@@ -1,10 +1,8 @@
 package org.sast.lostfound;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import org.sast.lostfound.model.LostItem;
 
@@ -25,6 +28,31 @@ public class InfoActivity extends AppCompatActivity {
     private TextView statusTextView;
     private TextView claimTimeTextView;
     private Button claimButton;
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE"
+    };
+
+    public static boolean checkStoragePermission(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity,
+                "android.permission.READ_EXTERNAL_STORAGE");
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity,
+                    PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+            return false;
+        }
+        return true;
+    }
+
+    // 处理权限请求结果
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -47,10 +75,15 @@ public class InfoActivity extends AppCompatActivity {
             setTitle(item.getTitle());
             titleTextView.setText(item.getTitle());
             locationTextView.setText(item.getLocation());
-            File photoFile = new File(item.getPhotoPath());
+            String filePath = item.getPhotoPath();
+            File photoFile = new File(filePath);
             if (photoFile.exists()) {
-                Bitmap photoBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                photoImageView.setImageBitmap(photoBitmap);
+                if (checkStoragePermission(this)) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                    if (bitmap != null) {
+                        photoImageView.setImageBitmap(bitmap);
+                    }
+                }
             }
             descriptionTextView.setText(item.getDescription());
             categoryTextView.setText(item.getCategory());

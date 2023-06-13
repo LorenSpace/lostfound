@@ -4,24 +4,61 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class LostItem implements Serializable {
-    private final String title;
+    private int id;
+    private String title;
     private Date time;
-    private final String location;
-    private final String description;
-    private final String category;
+    private String photoPath;
+    private String location;
+    private String description;
+    private String category;
     private String status;
-    private final String PhotoPath;
 
-    public LostItem(String title, Date time,
-                    String location, String category,
-                    String status, String photoPath, String description) {
+    public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public LostItem() {
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    public LostItem(int id, String title, Date time, String description,
+                    String location, String category,
+                    String status, String photoPath) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
         this.time = time;
         this.location = location;
         this.category = category;
         this.status = status;
-        this.PhotoPath = photoPath;
+        this.photoPath = photoPath;
+    }
+
+    public LostItem(String title, Date time, String description,
+                    String location, String category,
+                    String status, String photoPath) {
+        this.title = title;
         this.description = description;
+        this.time = time;
+        this.location = location;
+        this.category = category;
+        this.status = status;
+        this.photoPath = photoPath;
     }
 
     public String getTitle() {
@@ -45,7 +82,7 @@ public class LostItem implements Serializable {
     }
 
     public String getPhotoPath() {
-        return PhotoPath;
+        return photoPath;
     }
 
     public String getDescription() {
@@ -58,5 +95,9 @@ public class LostItem implements Serializable {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
     }
 }
