@@ -15,6 +15,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -55,6 +57,6 @@ public class MainActivity extends AppCompatActivity {
         // 获取 NavHostFragment 的 NavController
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
-        mNavController = navHostFragment.getNavController();
+        mNavController = Objects.requireNonNull(navHostFragment).getNavController();
     }
 }

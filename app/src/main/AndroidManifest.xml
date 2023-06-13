@@ -5,10 +5,16 @@
     default on apps targeting Android 12 or higher. -->
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="false" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <queries>
+        <package android:name="com.google.android.GoogleCamera"/>
+        <package android:name="com.sec.android.app.camera"/>
+        <package android:name="com.android.camera"/>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -20,6 +26,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lostfound"
         tools:targetApi="31" >
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="org.sast.lostfound.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".InfoActivity"
             android:exported="false" />

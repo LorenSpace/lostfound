@@ -100,4 +100,18 @@ public class LostItem implements Serializable {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "LostItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", time=" + time +
+                ", photoPath='" + photoPath + '\'' +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

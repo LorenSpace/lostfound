@@ -2,13 +2,10 @@ package org.sast.lostfound.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +15,6 @@ import org.sast.lostfound.InfoActivity;
 import org.sast.lostfound.R;
 import org.sast.lostfound.model.LostItem;
 
-import java.io.File;
 import java.util.List;
 
 public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder> {
@@ -46,7 +42,7 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
         holder.locationTextView.setText(item.getLocation());
         holder.categoryTextView.setText(item.getCategory());
         holder.statusTextView.setText(item.getStatus());
-        holder.timeTextView.setOnClickListener(v -> {
+        holder.titleTextView.setOnClickListener(v -> {
             Intent intent = new Intent(context, InfoActivity.class);
             intent.putExtra("lost_item", item);
             context.startActivity(intent);
@@ -60,7 +56,6 @@ public class LostItemAdapter extends RecyclerView.Adapter<LostItemAdapter.LostIt
 
     public void filterList(List<LostItem> filteredList) {
         itemList = filteredList;
-//        notifyDataSetChanged();
     }
 
     public static class LostItemViewHolder extends RecyclerView.ViewHolder {

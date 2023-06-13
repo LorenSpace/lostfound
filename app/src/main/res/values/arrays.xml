@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="month_array">
+        <item>全部</item>
         <item>一月</item>
         <item>二月</item>
         <item>三月</item>
@@ -15,10 +16,20 @@
         <item>十二月</item>
     </string-array>
     <string-array name="status_array">
+        <item>全部</item>
         <item>未认领</item>
         <item>已认领</item>
     </string-array>
     <string-array name="category_array">
+        <item>全部</item>
+        <item>书籍</item>
+        <item>电子产品</item>
+        <item>钱包</item>
+        <item>衣服</item>
+        <item>饰品</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="register_category_array">
         <item>书籍</item>
         <item>电子产品</item>
         <item>钱包</item>

@@ -23,7 +23,7 @@
                 android:text="@string/type" />
 
             <Spinner
-                android:id="@+id/category_spinner"
+                android:id="@+id/register_category_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

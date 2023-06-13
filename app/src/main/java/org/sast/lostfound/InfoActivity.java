@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -18,9 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import org.sast.lostfound.dao.LostItemDAO;
 import org.sast.lostfound.model.LostItem;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 public class InfoActivity extends AppCompatActivity {
@@ -59,8 +65,10 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        // 获取传递过来的失物对象
         item = (LostItem) getIntent().getSerializableExtra("lost_item");
 
+        // 初始化组件
         TextView titleTextView = findViewById(R.id.title_text_view);
         TextView locationTextView = findViewById(R.id.location_text_view);
         ImageView photoImageView = findViewById(R.id.photo_image_view);
@@ -70,24 +78,32 @@ public class InfoActivity extends AppCompatActivity {
         claimTimeTextView = findViewById(R.id.claim_time_text_view);
         TextView categoryTextView = findViewById(R.id.catalogue_text_view);
 
+        // 初始化 dao
+        LostItemDAO lostItemDAO = new LostItemDAO(this);
+
         // 显示失物详情
         if (item != null) {
             setTitle(item.getTitle());
             titleTextView.setText(item.getTitle());
             locationTextView.setText(item.getLocation());
+
             String filePath = item.getPhotoPath();
-            File photoFile = new File(filePath);
-            if (photoFile.exists()) {
-                if (checkStoragePermission(this)) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-                    if (bitmap != null) {
-                        photoImageView.setImageBitmap(bitmap);
-                    }
+            File file = new File(filePath);
+            if (file.exists()) {
+                try {
+                    InputStream inputStream = new FileInputStream(file);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    photoImageView.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
+
             descriptionTextView.setText(item.getDescription());
             categoryTextView.setText(item.getCategory());
             statusTextView.setText(item.getStatus());
+
+            // 如果失物未认领，则显示认领按钮
             if (item.getStatus().equals(getString(R.string.status_unclaimed))) {
                 claimButton.setVisibility(View.VISIBLE);
                 claimTimeTextView.setVisibility(View.GONE);
@@ -109,6 +125,9 @@ public class InfoActivity extends AppCompatActivity {
                                         claimTimeTextView.setText(getString(R.string.claim_time_prefix)
                                                 + " " + DateFormat.format("yyyy-MM-dd HH:mm:ss",
                                                 item.getTime()));
+
+                                        // 更新数据库
+                                        lostItemDAO.updateLostItem(item);
                                     })
                             .setNegativeButton(R.string.claim_dialog_negative_button, null)
                             .show();

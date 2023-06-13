@@ -25,7 +25,7 @@
             android:id="@+id/name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:hint="@string/item_name"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -34,10 +34,10 @@
             tools:ignore="VisualLintTextFieldSize" />
 
         <Spinner
-            android:id="@+id/category_spinner"
+            android:id="@+id/register_category_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:minHeight="48dp"
             android:prompt="@string/category_prompt" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:hint="@string/item_description"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -54,17 +54,17 @@
             tools:ignore="VisualLintTextFieldSize" />
 
         <ImageView
-            android:id="@+id/image_view"
+            android:id="@+id/register_item_image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:contentDescription="@string/todo"
             android:scaleType="centerInside" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:orientation="horizontal">
 
             <Button
@@ -89,7 +89,7 @@
             android:id="@+id/location_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/register_normal_dp"
             android:hint="@string/item_location"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -101,7 +101,13 @@
             android:id="@+id/date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="@dimen/register_normal_dp" />
+
+        <TimePicker
+            android:id="@+id/time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/register_normal_dp" />
 
         <Button
             android:id="@+id/register_button"
