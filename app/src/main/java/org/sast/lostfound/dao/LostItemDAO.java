@@ -18,8 +18,20 @@ public class LostItemDAO {
         mHelper = new LostFoundDatabaseHelper(context);
     }
 
+    private static ContentValues getContentValues(LostItem item) {
+        ContentValues values = new ContentValues();
+        values.put(LostItemTable.Cols.TITLE, item.getTitle());
+        values.put(LostItemTable.Cols.TIME, item.getTime().getTime());
+        values.put(LostItemTable.Cols.PHOTO_PATH, item.getPhotoPath());
+        values.put(LostItemTable.Cols.LOCATION, item.getLocation());
+        values.put(LostItemTable.Cols.DESCRIPTION, item.getDescription());
+        values.put(LostItemTable.Cols.CATEGORY, item.getCategory());
+        values.put(LostItemTable.Cols.STATUS, item.getStatus());
+        return values;
+    }
+
     public void addLostItem(LostItem item) {
-        try(SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
+        try (SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
             ContentValues values = getContentValues(item);
             mDatabase.insert(LostItemTable.NAME, null, values);
         }
@@ -27,7 +39,7 @@ public class LostItemDAO {
 
     public List<LostItem> getLostItems() {
         List<LostItem> lostItems = new ArrayList<>();
-        try(SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
+        try (SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
             try (Cursor cursor = mDatabase.query(LostItemTable.NAME,
                     null, null, null,
                     null, null, null)) {
@@ -54,7 +66,7 @@ public class LostItemDAO {
     public List<LostItem> getLostItemByFilter(String selection,
                                               List<String> selectionArgs) {
         List<LostItem> lostItems = new ArrayList<>();
-        try(SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
+        try (SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
             try (Cursor cursor = mDatabase.query(LostItemTable.NAME,
                     null, selection, selectionArgs.toArray(new String[0]),
                     null, null, "time DESC")) {
@@ -82,7 +94,7 @@ public class LostItemDAO {
 
     public void updateLostItem(LostItem item) {
         ContentValues values = getContentValues(item);
-        try(SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
+        try (SQLiteDatabase mDatabase = mHelper.getWritableDatabase()) {
             mDatabase.update(
                     LostItemTable.NAME,
                     values,
@@ -94,23 +106,10 @@ public class LostItemDAO {
         }
     }
 
-    private static ContentValues getContentValues(LostItem item) {
-        ContentValues values = new ContentValues();
-        values.put(LostItemTable.Cols.TITLE, item.getTitle());
-        values.put(LostItemTable.Cols.TIME, item.getTime().getTime());
-        values.put(LostItemTable.Cols.PHOTO_PATH, item.getPhotoPath());
-        values.put(LostItemTable.Cols.LOCATION, item.getLocation());
-        values.put(LostItemTable.Cols.DESCRIPTION, item.getDescription());
-        values.put(LostItemTable.Cols.CATEGORY, item.getCategory());
-        values.put(LostItemTable.Cols.STATUS, item.getStatus());
-        return values;
-    }
-
     private static class LostItemTable {
         static final String NAME = "lostitems";
 
         static class Cols {
-            static final String ID = "_id";
             static final String TITLE = "title";
             static final String TIME = "time";
             static final String LOCATION = "location";
@@ -118,8 +117,6 @@ public class LostItemDAO {
             static final String CATEGORY = "category";
             static final String STATUS = "status";
             static final String PHOTO_PATH = "photo_path";
-            static final String[] ALL = {ID, TITLE, TIME, PHOTO_PATH, LOCATION,
-                    DESCRIPTION, CATEGORY, STATUS};
         }
     }
 }

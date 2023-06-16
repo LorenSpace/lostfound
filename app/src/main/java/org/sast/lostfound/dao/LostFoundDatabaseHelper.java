@@ -39,20 +39,6 @@ public class LostFoundDatabaseHelper extends SQLiteOpenHelper {
 
     private static class LostItemTable {
         static final String NAME = "lostitems";
-
-        static class Cols {
-            static final String ID = "_id";
-            static final String TITLE = "title";
-            static final String TIME = "time";
-            static final String LOCATION = "location";
-            static final String DESCRIPTION = "description";
-            static final String CATEGORY = "category";
-            static final String STATUS = "status";
-            static final String PHOTO_PATH = "photo_path";
-            static final String[] ALL = {ID, TITLE, TIME, PHOTO_PATH, LOCATION,
-                    DESCRIPTION, CATEGORY, STATUS};
-        }
-
         static final String CREATE =
                 "CREATE TABLE " + NAME + "(" +
                         Cols.ID + " integer NOT NULL PRIMARY KEY AUTOINCREMENT, " +
@@ -63,5 +49,16 @@ public class LostFoundDatabaseHelper extends SQLiteOpenHelper {
                         Cols.CATEGORY + " varchar NOT NULL, " +
                         Cols.STATUS + " varchar NOT NULL, " +
                         Cols.PHOTO_PATH + " TEXT)";
+
+        static class Cols {
+            static final String ID = "_id";
+            static final String TITLE = "title";
+            static final String TIME = "time";
+            static final String LOCATION = "location";
+            static final String DESCRIPTION = "description";
+            static final String CATEGORY = "category";
+            static final String STATUS = "status";
+            static final String PHOTO_PATH = "photo_path";
+        }
     }
 }

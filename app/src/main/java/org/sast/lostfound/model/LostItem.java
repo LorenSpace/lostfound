@@ -1,5 +1,7 @@
 package org.sast.lostfound.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -101,6 +103,7 @@ public class LostItem implements Serializable {
         return id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "LostItem{" +

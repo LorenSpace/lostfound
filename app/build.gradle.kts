@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation("com.github.PhilJay:MPAndroidChart:v3.0.3")
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.appcompat)
